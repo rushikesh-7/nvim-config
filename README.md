@@ -8,7 +8,7 @@ I am using **Lazy.nvim** as the plugin manager for this setup.
 
 Before you start using this configuration, make sure you have the following installed:
 
-- **Neovim**: Version 0.5 or higher is required.
+- **Neovim**: Version 0.10 or higher is required.
 - **Git**: For managing plugins and configurations.
 - **Lazy.nvim**: The plugin manager used to install and manage plugins.
 - **Nerd Fonts**: Optional, for better UI support (icons, etc.).
