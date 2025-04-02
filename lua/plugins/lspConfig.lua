@@ -8,14 +8,14 @@ return{
         capabilities = capabilities,
       })
       lspconfig.clangd.setup({
-        cmd = { 
-          "clangd", 
+        cmd = {
+          "clangd",
           "--compile-commands-dir=/home/rushikesh/Desktop/master_maia/Solver",
           "--background-index",  -- Enables project-wide symbol indexing
           "--clang-tidy",        -- Enables extra linting
           "--completion-style=detailed", -- More precise completion
           "--header-insertion=iwyu",  -- "Include What You Use" (suggests necessary headers)
-          "--cross-file-rename",  -- Allows renaming across multiple files  
+          "--cross-file-rename",  -- Allows renaming across multiple files
         },
         filetypes = {"c", "cpp", "objc", "objcpp", "h"},
         root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git"),

@@ -15,6 +15,9 @@ vim.opt.foldlevel = 99
 
 vim.cmd("set colorcolumn=120")
 
+vim.cmd("set listchars=trail:~")
+vim.cmd("set list")
+
 vim.keymap.set("n", "<F8>", function()
   vim.diagnostic.setloclist({ severity = vim.diagnostic.severity.ERROR })
 end, { noremap = true, silent = true })
