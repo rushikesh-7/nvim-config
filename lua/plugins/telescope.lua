@@ -37,6 +37,7 @@ return {
 
       require('telescope.builtin').live_grep(opts)
     end, { desc = 'Telescope live grep with custom options' })
+    vim.keymap.set("n", "<leader>ts", require("telescope.builtin").lsp_document_symbols, { noremap = true, silent = true })
   end
   },
   {

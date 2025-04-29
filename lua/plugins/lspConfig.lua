@@ -7,10 +7,13 @@ return{
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
+      -- local root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git")(vim.fn.expand("%:p"))
+      -- local compile_commands_dir = root_dir or "/home/rushikesh/Desktop/master_maia/Solver"
       lspconfig.clangd.setup({
         cmd = {
           "clangd",
           "--compile-commands-dir=/home/rushikesh/Desktop/master_maia/Solver",
+          -- "--compile-commands-dir" .. compile_commands_dir,
           "--background-index",  -- Enables project-wide symbol indexing
           "--clang-tidy",        -- Enables extra linting
           "--completion-style=detailed", -- More precise completion
