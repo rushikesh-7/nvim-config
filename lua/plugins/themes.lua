@@ -33,11 +33,30 @@ return {
     lazy = false,
     config = function()
       require('no-clown-fiesta').load({
-        theme = "dark", -- options: "dark", "dim", "light"
+        theme = "dark",
         transparent = false,
       })
-
       vim.cmd('colorscheme no-clown-fiesta')
     end,
+  },
+  {
+    "marko-cerovac/material.nvim",
+    name = "material",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require('material').setup({})
+      -- vim.cmd('colorscheme material') -- (Styles: material, deep ocean, oceanic, palenight, darker)
+    end
+  },
+  {
+    "ramojus/mellifluous.nvim",
+    name = "mellifluous",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("mellifluous").setup({})
+      -- vim.cmd('colorscheme mellifluous')  -- (Styles: mellifluous, alduin, mountain, rigoletto)
+    end
   }
 }
