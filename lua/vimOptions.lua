@@ -3,7 +3,7 @@ vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
-vim.cmd("set clipboard=unnamedplus")
+vim.opt.clipboard = "unnamedplus"
 -- vim.o.mouse = ""
 
 vim.cmd("set number")
