@@ -12,20 +12,20 @@ return {
       local builtin = require('telescope.builtin')
 
       -- Define the explicit path to your standalone ripgrep binary
-      local custom_rg_path = vim.fn.expand("$HOME") .. "/.local/bin/rg"
+      -- local custom_rg_path = vim.fn.expand("$HOME") .. "/.local/bin/rg"
 
       telescope.setup({
         defaults = {
           -- 1. Point Telescope explicitly to your local ripgrep binary without changing $PATH
-          vimgrep_arguments = {
-            custom_rg_path,
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-          },
+          -- vimgrep_arguments = {
+          --   custom_rg_path,
+          --   "--color=never",
+          --   "--no-heading",
+          --   "--with-filename",
+          --   "--line-number",
+          --   "--column",
+          --   "--smart-case",
+          -- },
           -- 2. Performance tweaks for shared HPC network filesystems
           file_ignore_patterns = { "node_modules", "%%.git/", "target/", "build/", "dist/" },
         },
@@ -51,6 +51,13 @@ return {
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
       vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Find recent files' })
+      vim.keymap.set('n', '<leader>fw', function()
+        builtin.grep_string({ search = vim.fn.expand('<cword>') })
+      end, { desc = 'Find word under cursor' })
+      vim.keymap.set('v', '<leader>fv', function()
+        vim.cmd('normal! "vy')
+        builtin.grep_string({ search = vim.fn.getreg('v') })
+      end, { desc = 'Find visual selection' })
       vim.keymap.set('n', '<leader>jl', builtin.jumplist, { desc = 'Show Jumplist entries' })
       vim.keymap.set("n", "<leader>ts", builtin.lsp_document_symbols, { noremap = true, silent = true })
 
