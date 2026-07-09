@@ -2,14 +2,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require('lspconfig')
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      lspconfig.lua_ls.setup({
+      vim.lsp.config("lua_ls", {
         capabilities = capabilities,
       })
 
-      lspconfig.clangd.setup({
+      vim.lsp.config("clangd", {
         cmd = {
           "clangd",
           "--background-index",          -- Enables project-wide symbol indexing
@@ -19,7 +18,9 @@ return {
           "--cross-file-rename",         -- Allows renaming across multiple files
         },
         filetypes = {"c", "cpp", "objc", "objcpp", "h"},
-        root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git"),
+        root_dir = function(fname)
+          return vim.fs.root(fname, { "compile_commands.json", ".git" })
+        end,
         capabilities = capabilities,
 
         -- DYNAMICALLY FIND COMPILE_COMMANDS.JSON FOR EACH BUFFER
