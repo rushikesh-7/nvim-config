@@ -1,10 +1,14 @@
+-- Set this to switch your default theme. Options below (see each block's
+-- comment for style variants some themes support).
+local active = "no-clown-fiesta"
+
 return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
     config = function ()
-      -- vim.cmd.colorscheme "catppuccin"
+      if active == "catppuccin" then vim.cmd.colorscheme("catppuccin") end
     end
   },
   {
@@ -13,7 +17,7 @@ return {
     priority = 1000,
     opts = {},
     config = function()
-      -- vim.cmd.colorscheme "tokyonight-night"
+      if active == "tokyonight" then vim.cmd.colorscheme("tokyonight-night") end
     end
   },
   {
@@ -23,7 +27,7 @@ return {
     priority = 1000,
     config = function()
       require('github-theme').setup({})
-      -- vim.cmd('colorscheme github_dark')
+      if active == "github-theme" then vim.cmd.colorscheme("github_dark") end
     end,
   },
   {
@@ -32,11 +36,8 @@ return {
     priority = 1000,
     lazy = false,
     config = function()
-      require('no-clown-fiesta').load({
-        theme = "dark",
-        transparent = false,
-      })
-      vim.cmd('colorscheme no-clown-fiesta')
+      require('no-clown-fiesta').load({})
+      if active == "no-clown-fiesta" then vim.cmd.colorscheme("no-clown-fiesta") end
     end,
   },
   {
@@ -46,7 +47,8 @@ return {
     lazy = false,
     config = function()
       require('material').setup({})
-      -- vim.cmd('colorscheme material') -- (Styles: material, deep ocean, oceanic, palenight, darker)
+      -- Styles: material, deep ocean, oceanic, palenight, darker
+      if active == "material" then vim.cmd.colorscheme("material") end
     end
   },
   {
@@ -56,7 +58,8 @@ return {
     lazy = false,
     config = function()
       require("mellifluous").setup({})
-      -- vim.cmd('colorscheme mellifluous')  -- (Styles: mellifluous, alduin, mountain, rigoletto)
+      -- Styles: mellifluous, alduin, mountain, rigoletto
+      if active == "mellifluous" then vim.cmd.colorscheme("mellifluous") end
     end
   }
 }
