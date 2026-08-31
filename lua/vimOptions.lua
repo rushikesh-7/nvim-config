@@ -18,7 +18,8 @@ vim.keymap.set('n', '<leader><Down>',  '<C-w>j', { desc = 'Move to lower window'
 vim.keymap.set('n', '<leader><Up>',    '<C-w>k', { desc = 'Move to upper window' })
 vim.keymap.set('n', '<leader><Right>', '<C-w>l', { desc = 'Move to right window' })
 
-vim.cmd("set foldmethod=indent")
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.cmd("set foldlevel=0")
 vim.opt.foldlevel = 99
 -- vim.opt.foldlevelstart = 1
