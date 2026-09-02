@@ -102,7 +102,6 @@ return {
       extensions = {"quickfix", "fugitive", "nvim-tree"},
     })
 
-    navic.setup({ highlight = true })
     vim.api.nvim_exec([[
       highlight WinBar guibg=#212121 guifg=#c9d1d9
       highlight WinBarSeparator guibg=#212121 guifg=#8b949e

@@ -18,8 +18,9 @@ return {
           "--cross-file-rename",         -- Allows renaming across multiple files
         },
         filetypes = {"c", "cpp", "objc", "objcpp", "h"},
-        root_dir = function(fname)
-          return vim.fs.root(fname, { "compile_commands.json", ".git" })
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          on_dir(vim.fs.root(fname, { "compile_commands.json", ".git" }))
         end,
         capabilities = capabilities,
 
@@ -40,14 +41,15 @@ return {
           -- Inject the argument dynamically into this instance of clangd
           table.insert(new_config.cmd, "--compile-commands-dir=" .. compile_commands_dir)
         end,
-        on_attach = function(client, bufnr)
-          require("nvim-navic").attach(client, bufnr)
-        end
       })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client and client:supports_method('textDocument/documentSymbol') then
+            require("nvim-navic").attach(client, ev.buf)
+          end
           vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)

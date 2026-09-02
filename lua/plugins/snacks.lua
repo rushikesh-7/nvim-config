@@ -35,6 +35,7 @@ return {
     },
 
     input = { enabled = true },
+    lazygit = { enabled = true },
     picker = {
       enabled = true,
       ui_select = true,
@@ -44,9 +45,12 @@ return {
     scope = { enabled = true },
     -- scroll = { enabled = true },
     statuscolumn = { enabled = true },
+    terminal = { enabled = true },
     words = { enabled = true },
   },
   keys = {
+    { '<leader>gg', function() Snacks.lazygit() end, desc = 'Lazygit' },
+    { '<leader>tt', function() Snacks.terminal() end, desc = 'Toggle terminal' },
     { '<leader>ff', function() Snacks.picker.files() end, desc = 'Find files' },
     { '<leader>fg', function() Snacks.picker.grep() end, desc = 'Live grep' },
     { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Buffers' },

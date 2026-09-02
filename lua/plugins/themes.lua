@@ -1,6 +1,6 @@
 -- Set this to switch your default theme. Options below (see each block's
 -- comment for style variants some themes support).
-local active = "material"
+local active = "tokyonight"
 
 -- Only the active theme is loaded at startup; the rest stay lazy so they can't
 -- fight over `:colorscheme`. `setup`/`load` must stay inside `is(...)` because
